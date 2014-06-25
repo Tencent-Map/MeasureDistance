@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>
+        通过按钮控制工具的开启和关闭</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&libraries=geometry"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</head>
+<body>
+<div style="width:960px;height:640px;border:1px solid gray" id="container">
+</div>
+<input id="btn1" type="button" value="开始测距"/>
+<input id="btn2" type="button" value="结束测距"/>
+</body>
+</html>
+<script>
+var map = new qq.maps.Map(document.getElementById("container"), {
+    // 地图的中心地理坐标。
+    center: new qq.maps.LatLng(39.916527, 116.397128),
+    zoom: 14,
+    draggableCursor: 'default'
+});
+var button1 = document.getElementById("btn1");
+var button2 = document.getElementById("btn2");
+var measuredistance = new QQMapPlugin.MeasureDistance(map);
+qq.maps.event.addDomListener(button1, 'click', function () {
+    measuredistance.start();
+});
+qq.maps.event.addDomListener(button2, 'click', function () {
+    measuredistance.end();
+});
+
+
+</script>
